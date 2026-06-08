@@ -1,0 +1,50 @@
+---
+title: "SDK (OpenAI)"
+description: "Официальные OpenAI SDK с base_url ethereal."
+---
+
+ethereal совместим с официальными OpenAI SDK — меняешь `base_url` и ключ.
+
+<CodeGroup>
+
+```python Python
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://api.ethereal.llc/v1",
+    api_key="eth-...",
+)
+
+resp = client.chat.completions.create(
+    model="claude-sonnet-4-6",
+    messages=[{"role": "user", "content": "Привет!"}],
+)
+print(resp.choices[0].message.content)
+```
+
+```typescript TypeScript / Node
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://api.ethereal.llc/v1",
+  apiKey: process.env.ETHEREAL_API_KEY,
+});
+
+const resp = await client.chat.completions.create({
+  model: "claude-sonnet-4-6",
+  messages: [{ role: "user", content: "Привет!" }],
+});
+console.log(resp.choices[0].message.content);
+```
+
+```go Go
+client := openai.NewClient(
+    option.WithBaseURL("https://api.ethereal.llc/v1"),
+    option.WithAPIKey("eth-..."),
+)
+```
+
+</CodeGroup>
+
+Стриминг (`stream=True`) — см. [Стриминг](/streaming). Обработка ошибок — см.
+[Ошибки](/errors).

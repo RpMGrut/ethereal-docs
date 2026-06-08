@@ -1,0 +1,34 @@
+---
+title: "Claude Code (CLI)"
+description: "Claude в терминале через ethereal."
+---
+
+[Claude Code](https://docs.claude.com/claude-code) — официальный CLI-агент. Чтобы
+он ходил через ethereal, задай Anthropic-совместимый base URL и свой ключ.
+
+```bash
+export ANTHROPIC_BASE_URL="https://api.ethereal.llc"
+export ANTHROPIC_API_KEY="eth-..."
+
+claude
+```
+
+Чтобы не экспортировать каждый раз — добавь строки в `~/.zshrc` / `~/.bashrc`.
+
+## Выбор модели
+
+```bash
+claude --model claude-sonnet-4-6
+# или внутри сессии: /model claude-opus-4-8
+```
+
+<Tip>
+  Для повседневной работы держи `claude-sonnet-4-6`, переключайся на
+  `claude-opus-4-8` под сложные задачи и на `claude-haiku-4-5` — где нужна
+  скорость/дешевизна.
+</Tip>
+
+<Note>
+  Списание идёт по [тарифу модели](/pricing) за фактические токены сессии.
+  Баланс и разбивку смотри в [кабинете](https://ethereal.llc/dashboard).
+</Note>

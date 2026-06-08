@@ -1,0 +1,26 @@
+---
+title: "Aider"
+description: "Aider (терминальный pair-programmer) через ethereal."
+---
+
+[Aider](https://aider.chat) работает с OpenAI-совместимыми эндпоинтами через
+переменные окружения.
+
+```bash
+export OPENAI_API_BASE="https://api.ethereal.llc/v1"
+export OPENAI_API_KEY="eth-..."
+
+aider --model openai/claude-sonnet-4-6
+```
+
+Другие модели:
+
+```bash
+aider --model openai/claude-opus-4-8     # сложные задачи
+aider --model openai/claude-haiku-4-5    # быстро и дёшево
+```
+
+<Tip>
+  Префикс `openai/` говорит Aider использовать OpenAI-совместимый путь к модели
+  через заданный `OPENAI_API_BASE`.
+</Tip>

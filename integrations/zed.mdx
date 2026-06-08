@@ -1,0 +1,29 @@
+---
+title: "Zed"
+description: "Zed editor через OpenAI-совместимый провайдер ethereal."
+---
+
+В [Zed](https://zed.dev) можно задать OpenAI-совместимый провайдер с кастомным
+`api_url` в `settings.json`.
+
+```json settings.json
+{
+  "language_models": {
+    "openai": {
+      "api_url": "https://api.ethereal.llc/v1",
+      "available_models": [
+        { "name": "claude-sonnet-4-6", "max_tokens": 200000 },
+        { "name": "claude-opus-4-8", "max_tokens": 200000 },
+        { "name": "claude-haiku-4-5", "max_tokens": 200000 }
+      ]
+    }
+  }
+}
+```
+
+Ключ `eth-...` укажи в настройках провайдера OpenAI (Assistant → API key) или
+через переменную `OPENAI_API_KEY`.
+
+<Note>
+  Поле `max_tokens` здесь — ориентир окна; фактические лимиты задаёт модель.
+</Note>

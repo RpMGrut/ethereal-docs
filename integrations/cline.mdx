@@ -1,0 +1,24 @@
+---
+title: "Cline"
+description: "Cline (VS Code) через OpenAI-совместимый провайдера ethereal."
+---
+
+[Cline](https://cline.bot) — агент в VS Code. Подключается как OpenAI Compatible.
+
+<Steps>
+  <Step title="API Provider">
+    В настройках Cline выбери **OpenAI Compatible**.
+  </Step>
+  <Step title="Base URL и ключ">
+    - **Base URL:** `https://api.ethereal.llc/v1`
+    - **API Key:** `eth-...`
+  </Step>
+  <Step title="Model ID">
+    Укажи `claude-sonnet-4-6` (или `claude-opus-4-8` / `claude-haiku-4-5`).
+  </Step>
+</Steps>
+
+<Tip>
+  Для агентных задач с правками файлов хорошо подходит `claude-sonnet-4-6`;
+  сложную архитектуру доверь `claude-opus-4-8`.
+</Tip>

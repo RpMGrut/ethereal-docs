@@ -1,0 +1,41 @@
+---
+title: "FAQ"
+description: "Частые вопросы про ethereal."
+---
+
+<AccordionGroup>
+  <Accordion title="Это официальный Anthropic?">
+    Нет. ethereal — независимый шлюз к моделям Claude. Мы не аффилированы с
+    Anthropic; товарные знаки принадлежат их владельцам.
+  </Accordion>
+  <Accordion title="Нужен ли VPN?">
+    Нет. Эндпоинт доступен из России напрямую, оплата по СБП или криптой.
+  </Accordion>
+  <Accordion title="Это правда OpenAI-совместимо?">
+    Да. Формат запросов/ответов — как у OpenAI Chat Completions
+    (`/v1/chat/completions`). Работают официальные OpenAI SDK и большинство
+    dev-инструментов — достаточно сменить `base_url` и ключ.
+  </Accordion>
+  <Accordion title="Какие модели доступны?">
+    Opus 4.8, Sonnet 4.6, Haiku 4.5. Список и id — на странице
+    [Модели](/api-reference/models).
+  </Accordion>
+  <Accordion title="Есть ли подписка?">
+    Нет. Только pay-as-you-go: платишь за использованные токены, баланс не
+    сгорает, автосписаний нет.
+  </Accordion>
+  <Accordion title="Логируете ли вы мои запросы?">
+    Тело запросов и ответов не логируется. Для биллинга хранятся только
+    метаданные: модель, число токенов, время.
+  </Accordion>
+  <Accordion title="Можно вернуть деньги?">
+    Возврат за уже списанные токены не предусмотрен. Чтобы проверить интеграцию
+    без риска — есть минимальный пакет 5M за 99 ₽.
+  </Accordion>
+  <Accordion title="Работает ли с Claude Code / Cursor?">
+    Да. См. раздел [Интеграции](/integrations/overview) — там настройка для
+    Claude Code, Cursor, Cline, Aider, Zed и других.
+  </Accordion>
+</AccordionGroup>
+
+Не нашёл ответ? Загляни в [Поддержку](/support).

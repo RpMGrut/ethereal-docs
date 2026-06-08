@@ -1,0 +1,43 @@
+---
+title: "Обзор интеграций"
+description: "Как подключить ethereal к популярным CLI, IDE и агентам."
+---
+
+ethereal — OpenAI-совместимый шлюз, поэтому подходит почти любой инструмент, где
+можно задать **base URL** и **API-ключ**. Принцип везде одинаковый.
+
+## Что подставлять
+
+| Тип клиента | Base URL | Ключ |
+| --- | --- | --- |
+| OpenAI-совместимые (Cursor, Cline, Continue, Aider, Zed, OpenAI SDK) | `https://api.ethereal.llc/v1` | `eth-...` |
+| Claude Code (Anthropic CLI) | `https://api.ethereal.llc` | `eth-...` |
+
+Универсальные переменные окружения:
+
+```bash
+# OpenAI-совместимые инструменты
+export OPENAI_BASE_URL="https://api.ethereal.llc/v1"
+export OPENAI_API_KEY="eth-..."
+
+# Anthropic-стиль (Claude Code)
+export ANTHROPIC_BASE_URL="https://api.ethereal.llc"
+export ANTHROPIC_API_KEY="eth-..."
+```
+
+## Гайды
+
+<CardGroup cols={2}>
+  <Card title="Claude Code (CLI)" icon="terminal" href="/integrations/claude-code" />
+  <Card title="Cursor" icon="bolt" href="/integrations/cursor" />
+  <Card title="Cline" icon="robot" href="/integrations/cline" />
+  <Card title="Continue.dev" icon="arrow-right" href="/integrations/continue" />
+  <Card title="Aider" icon="code" href="/integrations/aider" />
+  <Card title="Zed" icon="bolt-lightning" href="/integrations/zed" />
+  <Card title="SDK (OpenAI)" icon="cube" href="/integrations/sdk" />
+</CardGroup>
+
+<Tip>
+  Модели: `claude-opus-4-8`, `claude-sonnet-4-6`, `claude-haiku-4-5`
+  ([список и тарифы](/api-reference/models)).
+</Tip>

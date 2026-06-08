@@ -1,0 +1,56 @@
+---
+title: "Авторизация"
+description: "Один API-ключ, два способа передать его."
+---
+
+Все запросы к API авторизуются по ключу вида `eth-...`. Создать и отозвать ключи
+можно в [личном кабинете](https://ethereal.llc/dashboard) → API-ключи.
+
+<Warning>
+  Ключ даёт доступ к балансу. Не публикуйте его в репозиториях и фронтенде —
+  держите в переменных окружения и серверном коде.
+</Warning>
+
+## Способ 1 — Bearer (рекомендуется)
+
+OpenAI-совместимый заголовок. Подходит для всех OpenAI SDK.
+
+```bash
+curl https://api.ethereal.llc/v1/chat/completions \
+  -H "Authorization: Bearer eth-..." \
+  -H "Content-Type: application/json" \
+  -d '{ "model": "claude-haiku-4-5", "messages": [{"role":"user","content":"ping"}] }'
+```
+
+## Способ 2 — x-api-key
+
+Для клиентов, привыкших к Anthropic-стилю заголовка.
+
+```bash
+curl https://api.ethereal.llc/v1/chat/completions \
+  -H "x-api-key: eth-..." \
+  -H "Content-Type: application/json" \
+  -d '{ "model": "claude-haiku-4-5", "messages": [{"role":"user","content":"ping"}] }'
+```
+
+## Переменные окружения
+
+Большинство инструментов читают ключ и базовый URL из окружения:
+
+```bash
+export ETHEREAL_API_KEY="eth-..."
+# для OpenAI-совместимых SDK:
+export OPENAI_API_KEY="eth-..."
+export OPENAI_BASE_URL="https://api.ethereal.llc/v1"
+```
+
+## Ротация и отзыв
+
+- Можно держать несколько ключей (например, по проекту/окружению).
+- Отозванный ключ перестаёт работать сразу.
+- При утечке — удалите ключ в кабинете и создайте новый.
+
+<Note>
+  Тело запросов не логируется — для биллинга хранятся только метаданные
+  (модель, число токенов, время). См. [FAQ](/faq).
+</Note>

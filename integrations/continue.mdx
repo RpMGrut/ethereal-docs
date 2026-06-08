@@ -1,0 +1,26 @@
+---
+title: "Continue.dev"
+description: "Continue (VS Code / JetBrains) через ethereal."
+---
+
+[Continue](https://continue.dev) настраивается через `config.yaml` (или
+`~/.continue/config.json`). Добавь модель с OpenAI-совместимым провайдером.
+
+```yaml config.yaml
+models:
+  - name: Sonnet (ethereal)
+    provider: openai
+    model: claude-sonnet-4-6
+    apiBase: https://api.ethereal.llc/v1
+    apiKey: eth-...
+  - name: Opus (ethereal)
+    provider: openai
+    model: claude-opus-4-8
+    apiBase: https://api.ethereal.llc/v1
+    apiKey: eth-...
+```
+
+<Note>
+  `provider: openai` + `apiBase` — ключевая пара: так Continue шлёт запросы в
+  OpenAI-формате на ethereal.
+</Note>

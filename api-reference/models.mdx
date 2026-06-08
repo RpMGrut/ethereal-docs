@@ -1,0 +1,44 @@
+---
+title: "Модели"
+description: "Доступные модели Claude, их id и тарифы."
+---
+
+| Модель | ID | Контекст | Когда |
+| --- | --- | --- | --- |
+| Opus 4.8 | `claude-opus-4-8` | большой | Самые сложные задачи, агенты, длинный код |
+| Sonnet 4.6 | `claude-sonnet-4-6` | большой | Баланс цены/качества — дефолт для кода |
+| Haiku 4.5 | `claude-haiku-4-5` | большой | Быстрые и дешёвые запросы, классификация |
+
+## Тарифы (₽ за 1M токенов)
+
+| Модель | Input | Output |
+| --- | --- | --- |
+| `claude-opus-4-8` | 1 300 | 6 500 |
+| `claude-sonnet-4-6` | 260 | 1 300 |
+| `claude-haiku-4-5` | 70 | 350 |
+
+Подробнее о биллинге — [Тарифы и токены](/pricing).
+
+## Список моделей через API
+
+```bash
+curl https://api.ethereal.llc/v1/models \
+  -H "Authorization: Bearer eth-..."
+```
+
+```json
+{
+  "object": "list",
+  "data": [
+    { "id": "claude-opus-4-8",   "object": "model" },
+    { "id": "claude-sonnet-4-6", "object": "model" },
+    { "id": "claude-haiku-4-5",  "object": "model" }
+  ]
+}
+```
+
+<Tip>
+  Указывай конкретный id в поле `model`. Для большинства задач в коде начинай с
+  `claude-sonnet-4-6`, поднимайся до Opus на сложном и опускайся до Haiku на
+  простом — так дешевле.
+</Tip>

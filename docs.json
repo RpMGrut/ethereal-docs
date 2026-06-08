@@ -1,0 +1,80 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "ethereal",
+  "description": "Вся линейка Claude за одним OpenAI-совместимым эндпоинтом. Оплата по СБП или криптой — без VPN. Платишь только за токены.",
+  "colors": {
+    "primary": "#7d5cf0",
+    "light": "#9b84f7",
+    "dark": "#9b84f7"
+  },
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Документация",
+        "groups": [
+          {
+            "group": "Начало",
+            "pages": ["introduction", "quickstart", "authentication"]
+          },
+          {
+            "group": "Биллинг",
+            "pages": ["pricing", "balance-and-topup"]
+          },
+          {
+            "group": "Возможности",
+            "pages": ["streaming", "errors", "faq", "support"]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Endpoints",
+            "pages": [
+              "api-reference/chat-completions",
+              "api-reference/models"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Интеграции",
+        "groups": [
+          {
+            "group": "Интеграции",
+            "pages": [
+              "integrations/overview",
+              "integrations/claude-code",
+              "integrations/cursor",
+              "integrations/cline",
+              "integrations/continue",
+              "integrations/aider",
+              "integrations/zed",
+              "integrations/sdk"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "logo": {
+    "light": "/logo/ethereal.svg",
+    "dark": "/logo/ethereal.svg"
+  },
+  "navbar": {
+    "links": [{ "label": "Кабинет", "href": "https://ethereal.llc/dashboard" }],
+    "primary": {
+      "type": "button",
+      "label": "Регистрация",
+      "href": "https://ethereal.llc/register"
+    }
+  },
+  "footer": {
+    "socials": {
+      "website": "https://ethereal.llc"
+    }
+  }
+}

@@ -1,0 +1,81 @@
+---
+title: "Быстрый старт"
+description: "Первый запрос к Claude через ethereal за пару минут."
+---
+
+## 1. Получи ключ
+
+Зарегистрируйся на [ethereal.llc](https://ethereal.llc/register), пополни баланс
+и создай API-ключ в [кабинете](https://ethereal.llc/dashboard). Ключ выглядит как
+`eth-...` — храни его в секрете.
+
+## 2. Сделай запрос
+
+Эндпоинт OpenAI-совместимый, поэтому подходит любой OpenAI SDK — достаточно
+сменить `base_url` и ключ.
+
+<CodeGroup>
+
+```bash cURL
+curl https://api.ethereal.llc/v1/chat/completions \
+  -H "Authorization: Bearer $ETHEREAL_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "claude-sonnet-4-6",
+    "messages": [
+      { "role": "user", "content": "Привет! Кратко: что такое ethereal?" }
+    ]
+  }'
+```
+
+```python Python (openai)
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://api.ethereal.llc/v1",
+    api_key="eth-...",  # ваш ключ
+)
+
+resp = client.chat.completions.create(
+    model="claude-sonnet-4-6",
+    messages=[{"role": "user", "content": "Привет!"}],
+)
+print(resp.choices[0].message.content)
+```
+
+```typescript TypeScript (openai)
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://api.ethereal.llc/v1",
+  apiKey: process.env.ETHEREAL_API_KEY,
+});
+
+const resp = await client.chat.completions.create({
+  model: "claude-sonnet-4-6",
+  messages: [{ role: "user", content: "Привет!" }],
+});
+console.log(resp.choices[0].message.content);
+```
+
+</CodeGroup>
+
+## 3. Готово
+
+Ответ придёт в обычном OpenAI-формате (`choices[].message.content`). За запрос
+спишется баланс по [тарифу модели](/pricing); разбивка input/output — в кабинете.
+
+<CardGroup cols={2}>
+  <Card title="Доступные модели" icon="layer-group" href="/api-reference/models">
+    Opus 4.8, Sonnet 4.6, Haiku 4.5 — id и тарифы.
+  </Card>
+  <Card title="Стриминг" icon="bolt" href="/streaming">
+    Потоковые ответы через `stream: true` (SSE).
+  </Card>
+  <Card title="Интеграции" icon="puzzle-piece" href="/integrations/overview">
+    Claude Code, Cursor, Cline, Aider, Zed и др.
+  </Card>
+  <Card title="Авторизация" icon="key" href="/authentication">
+    Два способа передать ключ.
+  </Card>
+</CardGroup>

@@ -1,0 +1,33 @@
+---
+title: "Cursor"
+description: "Свой OpenAI-совместимый провайдер в Cursor."
+---
+
+В [Cursor](https://cursor.com) можно указать кастомный OpenAI-совместимый
+эндпоинт.
+
+<Steps>
+  <Step title="Settings → Models">
+    Открой настройки моделей.
+  </Step>
+  <Step title="OpenAI API Key → Override Base URL">
+    Включи «Override OpenAI Base URL» и впиши:
+    ```
+    https://api.ethereal.llc/v1
+    ```
+    В поле API Key вставь свой `eth-...`.
+  </Step>
+  <Step title="Добавь модель">
+    Добавь пользовательскую модель с именем `claude-sonnet-4-6` (или
+    `claude-opus-4-8` / `claude-haiku-4-5`) и сохрани.
+  </Step>
+  <Step title="Проверь">
+    Нажми «Verify» — Cursor сделает тестовый запрос через ethereal.
+  </Step>
+</Steps>
+
+<Note>
+  Некоторые функции Cursor (Tab, Composer-агент) могут требовать собственных
+  моделей Cursor и не маршрутизируются через сторонний ключ — чат и ручной выбор
+  модели работают.
+</Note>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 32" fill="none">
+  <path d="M16 5l9 5.2v10.4L16 25.8 7 20.6V10.2L16 5z" fill="none" stroke="#7d5cf0" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M16 5v20.8M7 10.2l9 5.2 9-5.2" stroke="#9b84f7" stroke-width="1.5" stroke-linejoin="round"/>
+  <text x="38" y="22" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="800" fill="currentColor">ethereal</text>
+</svg>

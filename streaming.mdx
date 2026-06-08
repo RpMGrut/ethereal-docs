@@ -1,0 +1,65 @@
+---
+title: "Стриминг"
+description: "Потоковые ответы через Server-Sent Events (stream: true)."
+---
+
+Чтобы получать ответ по мере генерации, передай `"stream": true`. Ответ приходит
+как **SSE** — последовательность `data:`-чанков в OpenAI-формате, завершается
+строкой `data: [DONE]`.
+
+<CodeGroup>
+
+```python Python (openai)
+from openai import OpenAI
+
+client = OpenAI(base_url="https://api.ethereal.llc/v1", api_key="eth-...")
+
+stream = client.chat.completions.create(
+    model="claude-sonnet-4-6",
+    messages=[{"role": "user", "content": "Напиши хайку про код"}],
+    stream=True,
+)
+for chunk in stream:
+    delta = chunk.choices[0].delta.content
+    if delta:
+        print(delta, end="", flush=True)
+```
+
+```typescript TypeScript (openai)
+import OpenAI from "openai";
+const client = new OpenAI({ baseURL: "https://api.ethereal.llc/v1", apiKey: process.env.ETHEREAL_API_KEY });
+
+const stream = await client.chat.completions.create({
+  model: "claude-sonnet-4-6",
+  messages: [{ role: "user", content: "Напиши хайку про код" }],
+  stream: true,
+});
+for await (const chunk of stream) {
+  process.stdout.write(chunk.choices[0]?.delta?.content ?? "");
+}
+```
+
+```bash cURL
+curl https://api.ethereal.llc/v1/chat/completions \
+  -H "Authorization: Bearer eth-..." \
+  -H "Content-Type: application/json" \
+  -d '{ "model": "claude-sonnet-4-6", "stream": true,
+        "messages": [{"role":"user","content":"hi"}] }' --no-buffer
+```
+
+</CodeGroup>
+
+## Формат чанка
+
+```json
+data: {"id":"...","object":"chat.completion.chunk","choices":[{"delta":{"content":"Прив"},"index":0,"finish_reason":null}]}
+
+data: {"id":"...","object":"chat.completion.chunk","choices":[{"delta":{},"index":0,"finish_reason":"stop"}]}
+
+data: [DONE]
+```
+
+<Tip>
+  Биллинг при стриминге считается по фактическому числу сгенерированных токенов —
+  ровно как при обычном запросе.
+</Tip>

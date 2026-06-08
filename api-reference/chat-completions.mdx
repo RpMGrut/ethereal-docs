@@ -1,0 +1,90 @@
+---
+title: "Chat Completions"
+description: "POST /v1/chat/completions — OpenAI-совместимый эндпоинт генерации."
+---
+
+```
+POST https://api.ethereal.llc/v1/chat/completions
+```
+
+Основной эндпоинт. Формат запроса и ответа совпадает с OpenAI Chat Completions,
+поэтому работают официальные OpenAI SDK.
+
+## Заголовки
+
+| Заголовок | Значение |
+| --- | --- |
+| `Authorization` | `Bearer eth-...` (или `x-api-key: eth-...`) |
+| `Content-Type` | `application/json` |
+
+## Параметры тела
+
+<ParamField body="model" type="string" required>
+  ID модели: `claude-opus-4-8`, `claude-sonnet-4-6` или `claude-haiku-4-5`.
+</ParamField>
+<ParamField body="messages" type="array" required>
+  Список сообщений. Каждое — `{ "role": "system" | "user" | "assistant", "content": string }`.
+</ParamField>
+<ParamField body="stream" type="boolean" default="false">
+  Если `true` — ответ приходит потоком (SSE). См. [Стриминг](/streaming).
+</ParamField>
+<ParamField body="max_tokens" type="integer">
+  Максимум токенов в ответе.
+</ParamField>
+<ParamField body="temperature" type="number" default="1">
+  Креативность, 0–2. Меньше — детерминированнее.
+</ParamField>
+<ParamField body="top_p" type="number">
+  Nucleus sampling, альтернатива `temperature`.
+</ParamField>
+<ParamField body="stop" type="string | string[]">
+  Стоп-последовательности.
+</ParamField>
+
+## Пример запроса
+
+```bash
+curl https://api.ethereal.llc/v1/chat/completions \
+  -H "Authorization: Bearer eth-..." \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "claude-sonnet-4-6",
+    "messages": [
+      { "role": "system", "content": "Ты лаконичный ассистент." },
+      { "role": "user", "content": "Объясни рекурсию в одном предложении." }
+    ],
+    "max_tokens": 200
+  }'
+```
+
+## Ответ
+
+```json
+{
+  "id": "chatcmpl-...",
+  "object": "chat.completion",
+  "created": 1780000000,
+  "model": "claude-sonnet-4-6",
+  "choices": [
+    {
+      "index": 0,
+      "message": { "role": "assistant", "content": "Рекурсия — это когда функция вызывает саму себя до достижения базового случая." },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": { "prompt_tokens": 28, "completion_tokens": 17, "total_tokens": 45 }
+}
+```
+
+Поле `usage` показывает потраченные токены — по ним и считается списание
+([Тарифы](/pricing)).
+
+<ParamField response="choices[].message.content" type="string">
+  Текст ответа модели.
+</ParamField>
+<ParamField response="finish_reason" type="string">
+  `stop` — модель завершила; `length` — упёрлась в `max_tokens`.
+</ParamField>
+<ParamField response="usage" type="object">
+  `prompt_tokens`, `completion_tokens`, `total_tokens`.
+</ParamField>
